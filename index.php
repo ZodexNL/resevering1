@@ -4,12 +4,13 @@ if($_SESSION["ingelogd"] == false){
     echo "<script>window.alert('Je moet eerst inloggen!')</script>";
     echo "<script>window.location = 'inlog.php'</script>";
 }else{
+    echo "Welkom " . $_SESSION["naam"];
     ?>
     <html>
 <head>
     <title>Test</title>
     <form method="post">
-        <input type="submit" name="uitloggen" placeholder="uitloggen">
+        <input type="submit" name="uitloggen" placeholder="uitloggen" value="Uitloggen">
     </form>
 
 </head>
@@ -19,7 +20,7 @@ if($_SESSION["ingelogd"] == false){
 </html>
 
 <?php
-echo "Welkom " . $_SESSION["naam"];
+
 
 if(isset($_POST["uitloggen"])){
     session_unset();

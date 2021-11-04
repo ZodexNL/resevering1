@@ -25,7 +25,7 @@ if(isset($_POST['login'])){
 
 
     $sth = $conn->prepare("SELECT * FROM users");
-    $info2 = $sth->execute();
+    $sth->execute();
     $info = $sth->setFetchMode(PDO::FETCH_OBJ);
 
 
@@ -37,9 +37,10 @@ if(isset($_POST['login'])){
                 session_start();
                 $_SESSION["naam"] = $name;
                 $_SESSION["ingelogd"] = true;
+                $_SESSION["rechten"] = $info->rechten;
                 echo "Succesvol ingelogd";
 
-                echo "<script>window.location = 'index.php'</script>";
+                echo "<script>window.location = 'tussen.php'</script>";
 
             }else {
                 echo "het gaat niet goed";
