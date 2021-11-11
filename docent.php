@@ -34,6 +34,8 @@ if($_SESSION["ingelogd"] == false){
 </div>
     <input type="submit" name="update">
 </form>
+
+<button onclick="location.href='avondAanmaken.php'">Maak een open dag aan</button>
 </body>
 </html>
 
