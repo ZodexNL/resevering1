@@ -4,9 +4,10 @@ if($_SESSION["ingelogd"] == false){
     echo "<script>window.alert('Je moet eerst inloggen!')</script>";
     echo "<script>window.location = 'inlog.php'</script>";
 }else{
+if($_SESSION["rechten"] == "ouder" || $_SESSION["rechten"] == "docent"){
+?>
 
-    ?>
-    <html>
+<html>
 <head>
     <title>Test</title>
 
@@ -18,24 +19,24 @@ if($_SESSION["ingelogd"] == false){
 </header>
 
 <body>
-    <div class="welkomBericht">
-        <?php
-        include 'database.php';
+<div class="welkomBericht">
+    <?php
+    include 'database.php';
 
-        $stm = $conn->prepare("SELECT * FROM informatie where id = '1'");
-        $stm->execute();
-        $data = $stm->setFetchMode(PDO::FETCH_OBJ);
+    $stm = $conn->prepare("SELECT * FROM informatie where id = '1'");
+    $stm->execute();
+    $data = $stm->setFetchMode(PDO::FETCH_OBJ);
 
 
 
-        foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $data){
-            echo $data->welkom;
-        }
-        ?>
-    </div>
-    <form method="post" id="uitloggenForm">
-        <input type="submit" name="uitloggen" placeholder="uitloggen" value="Uitloggen" id="uitloggenBtn">
-    </form>
+    foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $data){
+        echo $data->welkom;
+    }
+    ?>
+</div>
+<form method="post" id="uitloggenForm">
+    <input type="submit" name="uitloggen" placeholder="uitloggen" value="Uitloggen" id="uitloggenBtn">
+</form>
 
 </body>
 </html>
@@ -52,3 +53,9 @@ if(isset($_POST["uitloggen"])){
 }
 
 ?>
+
+<?php
+}
+
+?>
+
