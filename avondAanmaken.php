@@ -17,46 +17,48 @@ if($_SESSION["ingelogd"] == false){
 </head>
 <body>
 <h1>Nieuwe ouderavond aanmaken</h1>
-
-<form method="post">
+<h2></h2>
+<form method="post" name="forum">
     <label for="datum">Datum:</label>
-    <input type="date" name="datum">
-
-    <label>van </label>
-    <input type="time" name="tijd1Van">
-    <label> tot </label>
-    <input type="time" name="tijd1Tot">
-
-        <select id="hoeveelheid" name="hoeveelheid" onchange="<?php bepaal();?>">
-            <option value="1"></option>
-            <option value="2"></option>
-            <option value="3"></option>
-            <option value="4"></option>
-            <option value="5"></option>
-            <option value="6"></option>
-            <option value="7"></option>
-            <option value="8"></option>
-            <option value="9"></option>
-            <option value="10"></option>
-
-        </select>
+    <input type="date" name="datum"><br/><br/>
 
     <?php
-    function bepaal(){
-        $hoeveelheid = $_POST["hoeveelheid"];
+    for($q = 0; $q < 10; $q++){
 
+        echo "<label> tijd van </label>";
+        echo "<input type='time' name='tijdVan[]'>";
+        echo "<label> tot </label>";
+        echo "<input type='time' name='tijdTot[]'><br/>";
 
-        for($i = 0; $i < $hoeveelheid; $i++){
-            echo "<label> van </label> <input type='time' name='van$i'><label> tot </label> <input type='time' name='tot$i'>";
-        }
+    }
+    ?>
+    <br/>
+    <input type="submit" name="submitForm" value="Verstuur">
+</form>
+
+<?php
+
+if(isset($_POST["submitForm"])){
+
+    include 'database.php';
+
+    for($i = 0; $i < 10; $i++){
+        $datum = $_POST['datum'];
+        $tijdVan = $_POST['tijdVan'][$i];
+        $tijdTot = $_POST['tijdTot'][$i];
+
+        $query = ("INSERT INTO tijden (id, van, tot, bezet, dag) 
+        VALUES (0, '$tijdVan', '$tijdTot', 1, '$datum')");
+
+        $sth = $conn->prepare($query);
+        $sth->execute();
+
     }
 
-
-    ?>
-
+}
 
 
-</form>
+?>
 
 </body>
 </html>
