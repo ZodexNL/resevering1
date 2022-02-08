@@ -15,7 +15,7 @@ if($_SESSION["rechten"] == "ouder" || $_SESSION["rechten"] == "docent"){
 <h1>Een afspraak maken</h1>
 <h2>Beschikbare afspraken:</h2>
 <?php
-include 'database.php';
+include 'php/database/database.php';
 
 $query = ("SELECT * FROM tijden where bezet = '1'");
 
@@ -41,7 +41,7 @@ foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $tijden) {
 <select name='afspraak'>
     <?php
 
-        include 'database.php';
+        include 'php/database/database.php';
 
         $query = ("SELECT * FROM tijden where bezet = '1'");
 
@@ -57,10 +57,10 @@ foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $tijden) {
 </select>
 
     <input type="submit" name="boek" value="Reseveer">
-</form>
+
 
 <?php
-include 'database.php';
+include 'php/database/database.php';
 try{
     if(isset($_POST['boek'])){
         $gekozenID = $_POST['afspraak'];
@@ -79,11 +79,11 @@ try{
         }
 
         $query1 = ("INSERT INTO reseveringen (id, user_naam, tijden_van, tijden_tot, tijden_dag) 
-VALUES ('$gekozenID', '$naam', '$tijdVan', '$tijdTot', '$dag')");
+VALUES ('$gekozenID', '$naam', '$fetch->van', '$fetch->tot', '$fetch->dag')");
         $sth = $conn->prepare($query1);
         $sth->execute();
 
-        var_dump($fetch);
+        var_dump($query1);
     }
 }catch (Exception $er){
     echo $er->getMessage();
@@ -91,7 +91,7 @@ VALUES ('$gekozenID', '$naam', '$tijdVan', '$tijdTot', '$dag')");
 
 
 ?>
-
+</form>
 
 </body>
 

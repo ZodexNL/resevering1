@@ -19,7 +19,7 @@ if($_SESSION["ingelogd"] == false){
 <form method="post">
 <div class="welkomBericht">
     <?php
-    include 'database.php';
+    include 'php/database/database.php';
 
     $stm = $conn->prepare("SELECT * FROM informatie where id = '1'");
     $stm->execute();
@@ -41,7 +41,7 @@ if($_SESSION["ingelogd"] == false){
 
 <?php
 if(isset($_POST["update"])){
-    include 'database.php';
+    include 'php/database/database.php';
     $nieuweInfo = $_POST["welkom"];
 
     $query = ("UPDATE informatie SET welkom = '$nieuweInfo' WHERE id = 1");
