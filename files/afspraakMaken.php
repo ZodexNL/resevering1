@@ -8,10 +8,22 @@ if($_SESSION["rechten"] == "ouder" || $_SESSION["rechten"] == "docent"){
 ?>
 <html>
 <head>
-
+   <link rel="stylesheet" type="text/css" href="../css/afspraakMaken.css">
 </head>
 
 <body>
+
+<div class="topnav">
+    <a id="logo" class="logo" href="inlog.php"><img src="../media/GLRlogo_RGB.jpg" height="50" width="50"></a>
+    <a class="active"><p>Welkom <?php echo $_SESSION["naam"] ?></p></a>
+    <a href="afspraakMaken.php"><p>Afspraak Maken</p></a>
+    <a href=""><p>Contact</p></a>
+    <form method="post" id="uitloggenForm">
+        <input type="submit" name="uitloggen" placeholder="uitloggen" value="Uitloggen" id="uitloggenBtn" class="uitloggen">
+    </form>
+</div>
+
+<div class="afspraakVak">
 <h1>Een afspraak maken</h1>
 <h2>Beschikbare afspraken:</h2>
 <?php
@@ -56,7 +68,10 @@ foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $tijden) {
 ?>
 </select>
 
-    <input type="submit" name="boek" value="Reseveer">
+<br>
+    <input class="Boek" type="submit" name="boek" value="Reseveer">
+
+</div>
 
 
 <?php

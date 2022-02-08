@@ -13,9 +13,22 @@ if($_SESSION["ingelogd"] == false){
         ?>
 <html>
 <head>
-
+  <link rel="stylesheet" type="text/css" href="../css/docent.css">
 </head>
 <body>
+
+ <div class="topnav">
+    <a id="logo" class="logo" href="inlog.php"><img src="../media/GLRlogo_RGB.jpg" height="50" width="50"></a>
+    <a class="active"><p>Welkom <?php echo $_SESSION["naam"] ?></p></a>
+    <a href="afspraakMaken.php"><p>Afspraak Maken</p></a>
+    <a href=""><p>Contact</p></a>
+    <form method="post" id="uitloggenForm">
+        <input type="submit" name="uitloggen" placeholder="uitloggen" value="Uitloggen" id="uitloggenBtn" class="uitloggen">
+    </form>
+</div>
+  
+  <h1 class="welkom">Welkom Mentor</h1>
+
 <form method="post">
 <div class="welkomBericht">
     <?php
@@ -31,11 +44,16 @@ if($_SESSION["ingelogd"] == false){
         echo "<textarea rows='6' cols='50' name='welkom'>$data->welkom</textarea>";
     }
     ?>
-</div>
-    <input type="submit" name="update">
+
+    <br>
+
+    <input class="send" type="submit" name="update">
 </form>
 
-<button onclick="location.href='avondAanmaken.php'">Maak een open dag aan</button>
+<br>
+
+<button class="verstuur" onclick="location.href='avondAanmaken.php'">Maak een open dag aan</button>
+</div>
 </body>
 </html>
 
@@ -57,3 +75,5 @@ if(isset($_POST["update"])){
     }
 }
         ?>
+
+
