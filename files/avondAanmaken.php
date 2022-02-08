@@ -44,49 +44,50 @@ if($_SESSION["ingelogd"] == false){
 
 if(isset($_POST["submitForm"])){
 
-   // include 'php/database/database.php';
+   include 'php/database/database.php';
     $aantalAfspraken = $_POST['aantal'];
     $tijdVan1 = $_POST['datumTijd'];
 
 
     $tijdBerekend = strtotime($tijdVan1);
 
-    $tijd = array();
+    //Een array met de tijden erin
+    $tijden = array();
 
-    $array = array();
+    //Het pushen van de eerste tijd naar de array
+    array_push($tijden, $tijdBerekend);
+
 
     for($i = 0; $i < $aantalAfspraken; $i++){
-
-        array_push($tijd, $i);
-
-        for($b = 0; $b < $tijd; $b++){
-            $tijd[$b] =
-        }
-
-        $nieuwetijd = $tijdBerekend + 900;
+        // Het maken van een variable die de laatste uit de array pakt en er een kwartier bij toevoegd
+       $nogEenNieuweTijd = $tijden[$i] + 900;
+       //Het pushen van de nieuwe tijd
+       array_push($tijden, $nogEenNieuweTijd);
 
 
+        echo date('H:i', $tijden[$i]);
+        echo date('Y-m-d', $tijden[$i]);
 
-        array_push($array, $nieuwetijd);
+        $tijd = date('H:i', $tijden[$i]);
+        $tijd2 = date('H:i', $tijden[$i + 1]);
 
-        //echo $array[$i];
+        $datum = date('Y-m-d', $tijden[$i]);
 
-        echo date('H:i', $array[$i]);
+
+        $query = ("INSERT INTO tijden (id, van, tot, bezet, dag)
+        VALUES (0, '$tijd', '$tijd2', 1, '$datum')");
+        $sth = $conn->prepare($query);
+        $sth->execute();
+
     }
 
 
 
 
-    /*for($i = 0; $i < 10; $i++){
-        $datum = $_POST['datum'];
-        $tijdVan = $_POST['tijdVan'][$i];
-        $tijdTot = $_POST['tijdTot'][$i];
+    //for($t = 0; $t < $i; $t++){
 
-        $query = ("INSERT INTO tijden (id, van, tot, bezet, dag)
-        VALUES (0, '$tijdVan', '$tijdTot', 1, '$datum')");
-        $sth = $conn->prepare($query);
-        $sth->execute();
-    }*/
+
+    //}
 }
 ?>
 
