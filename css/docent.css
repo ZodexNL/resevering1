@@ -125,7 +125,7 @@ body, html {
     background-color: #8fe507;
     color: white;
     height: 320px;
-    width: 30%;
+    width: 35%;
     border-radius: 2%;
     margin-top: 80px;
 
@@ -152,6 +152,7 @@ body, html {
     	height: 50px;
     	font-size: 17px;
     	border-radius: 2%;
+
     }
 
   /* einde verstuur knop */

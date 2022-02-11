@@ -14,7 +14,7 @@ if($_SESSION["rechten"] == "ouder" || $_SESSION["rechten"] == "docent"){
 <body>
 
 <div class="topnav">
-    <a id="logo" class="logo" href="inlog.php"><img src="../media/GLRlogo_RGB.jpg" height="50" width="50"></a>
+    <a id="logo" class="logo" href="ouder.php"><img src="../media/GLRlogo_RGB.jpg" height="50" width="50"></a>
     <a class="active"><p>Welkom <?php echo $_SESSION["naam"] ?></p></a>
     <a href="afspraakMaken.php"><p>Afspraak Maken</p></a>
     <a href=""><p>Contact</p></a>
@@ -23,9 +23,9 @@ if($_SESSION["rechten"] == "ouder" || $_SESSION["rechten"] == "docent"){
     </form>
 </div>
 
-<div class="afspraakVak">
-<h1>Een afspraak maken</h1>
-<h2>Beschikbare afspraken:</h2>
+
+<h1 class="afspraakH1">Een afspraak maken</h1>
+<h2 class="afspraakH2">Beschikbare afspraken:</h2>
 <?php
 include 'php/database/database.php';
 
@@ -39,9 +39,11 @@ $tijden = $stm->setFetchMode(PDO::FETCH_OBJ);
 
 // dit gebeurt hier
 foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $tijden) {
+    echo "<div class='afspraakVak'>";
     echo "Afspraaknummer: $tijden->id <br/>";
     echo "Van: $tijden->van Tot: $tijden->tot<br/>";
     echo "Datum: $tijden->dag <br/><br/>";
+    echo "</div>";
 }
 
 
@@ -49,7 +51,7 @@ foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $tijden) {
 <form method='post'>
 
 
-<label>Kies hier uw afspraaknummer</label>
+<label class="labelAfspraak">Kies hier uw afspraaknummer</label>
 <select name='afspraak'>
     <?php
 
@@ -71,7 +73,7 @@ foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $tijden) {
 <br>
     <input class="Boek" type="submit" name="boek" value="Reseveer">
 
-</div>
+
 
 
 <?php
@@ -98,7 +100,9 @@ VALUES ('$gekozenID', '$naam', '$fetch->van', '$fetch->tot', '$fetch->dag')");
         $sth = $conn->prepare($query1);
         $sth->execute();
 
-        var_dump($query1);
+        $query2 = ("UPDATE tijden SET bezet = 0 WHERE id = '$gekozenID' ");
+        $stmt = $conn->prepare($query2);
+        $stmt->execute();
     }
 }catch (Exception $er){
     echo $er->getMessage();
@@ -111,7 +115,18 @@ VALUES ('$gekozenID', '$naam', '$fetch->van', '$fetch->tot', '$fetch->dag')");
 </body>
 
 </html>
+    <?php
 
+
+    if(isset($_POST["uitloggen"])){
+        session_unset();
+        session_destroy();
+        echo "<script>window.alert('Je bent succesvol uitgelogd!')</script>";
+        echo "<script>window.location = 'inlog.php'</script>";
+    }
+
+
+    ?>
 <?php
 
     }

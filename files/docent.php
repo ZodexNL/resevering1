@@ -18,7 +18,7 @@ if($_SESSION["ingelogd"] == false){
 <body>
 
  <div class="topnav">
-    <a id="logo" class="logo" href="inlog.php"><img src="../media/GLRlogo_RGB.jpg" height="50" width="50"></a>
+    <a id="logo" class="logo" href="docent.php"><img src="../media/GLRlogo_RGB.jpg" height="50" width="50"></a>
     <a class="active"><p>Welkom <?php echo $_SESSION["naam"] ?></p></a>
     <a href="afspraakMaken.php"><p>Afspraak Maken</p></a>
     <a href=""><p>Contact</p></a>
@@ -41,7 +41,7 @@ if($_SESSION["ingelogd"] == false){
 
 
     foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $data){
-        echo "<textarea rows='6' cols='50' name='welkom'>$data->welkom</textarea>";
+        echo "<textarea rows='6' cols='50' name='welkom' style='width: 80%'>$data->welkom</textarea>";
     }
     ?>
 
@@ -52,7 +52,7 @@ if($_SESSION["ingelogd"] == false){
 
 <br>
 
-<button class="verstuur" onclick="location.href='avondAanmaken.php'">Maak een open dag aan</button>
+<button class="verstuur"><a href="avondAanmaken.php" style="text-decoration: none; color: #8fe507;">Maak een open dag aan</a></button>
 </div>
 </body>
 </html>
@@ -69,7 +69,18 @@ if(isset($_POST["update"])){
     echo "<script>window.location = 'docent.php'</script>";
 }
 ?>
+        <?php
 
+
+        if(isset($_POST["uitloggen"])){
+            session_unset();
+            session_destroy();
+            echo "<script>window.alert('Je bent succesvol uitgelogd!')</script>";
+            echo "<script>window.location = 'inlog.php'</script>";
+        }
+
+
+        ?>
 <?php
 
     }

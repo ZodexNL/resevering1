@@ -122,11 +122,11 @@ body, html {
     text-align: center;
     background-color: #8fe507;
     color: white;
-    height: 320px;
-    width: 30%;
+    width: 10%;
     border-radius: 2%;
-    margin-top: 80px;
-    margin-left:  33%;
+    margin-top: 25px;
+   margin-left: 25px;
+
 
 }
 
@@ -143,4 +143,23 @@ body, html {
     	height: 50px;
     	font-size: 17px;
     	border-radius: 2%;
+      margin-left: 45%;
     }
+
+    .afspraakH1{
+      text-align: center;
+      color: white;
+    }
+
+
+.afspraakH2{
+  text-align: center;
+  color: white;
+}
+
+.labelAfspraak{
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  margin-left: 40%;
+}
