@@ -1,0 +1,147 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../media/background2.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100%;
+
+
+/* begin navbar */
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #666666;
+  font-family: schoolfont;
+}
+
+.topnav a {
+  display: inline-block;
+  height: 50px;
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: schoolfont;
+  padding: 3px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.topnav a:hover {
+  background-color: #5C6266;
+  color: #8fe507;
+  font-family: schoolfont;
+}
+
+.topnav a.active {
+  background-color: #8fe507;
+  color: white;
+}
+
+/* einde navbar */
+
+
+ /* begin school fonts*/
+
+@font-face {
+  font-family: schoolFont;
+  src: url(fonts/nimbus-sans-l.regular.otf);
+}
+
+@font-face {
+  font-family: schoolFontDik;
+  src: url(fonts/NimbusSansT-BlackCondensed.otf);
+}
+ /* einde school fonts */
+
+
+/* begin footer */
+
+ .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #666666;
+   color: white;
+   text-align: center;
+}
+
+/* einde footer */
+
+/* begin logo style */
+
+.logo {
+  padding: 3px;
+}
+
+.logo a:hover {
+  background-color: #8fe507;
+  color: white;
+  font-family: schoolFont;
+}
+
+#logo a:hover {
+  background-color: #8fe507;
+  color: white;
+  font-family: schoolFont;
+}
+
+/* einde logo style */
+
+
+/* uitloggen start */
+
+.uitloggen {
+  float: right;
+  width: 100px;
+  background-color: #666666;
+  border: none;
+  color: white;
+  padding-top: 13px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/*uitlooggen einde */
+
+
+/*begin afspraakvak */
+
+.aanmaakvak {
+    display: inline-block;
+    text-align: center;
+    background-color: #8fe507;
+    color: white;
+    height: 320px;
+    width: 30%;
+    border-radius: 2%;
+    margin-top: 80px;
+    margin-left: 33%;
+
+
+}
+
+/* einde afspraakvak */
+
+
+/* begin reserveer knop */
+    .verstuur {
+    	margin-top: 20px;
+    	display: inline-block;
+    	background-color: whitesmoke;
+    	color: #8fe507;
+    	width: 150px;
+    	height: 50px;
+    	font-size: 17px;
+    	border-radius: 2%;
+    }
